@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-md lg bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    
+    <!-- LOGO -->
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-solid fa-earth-americas"></i>
+    </a>
+
+    <!-- TOGGLER FOR SMALL SCREEN -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+      <!-- LEFT SIDE -->
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <!-- 🔍 SEARCH BAR IN CENTER -->
+      <div class="d-flex justify-content-center flex-grow-1">
+        <form action="/listings" method="GET" class="search-form">
+          <input 
+            type="text" 
+            name="search" 
+            class="form-control search-input" 
+            placeholder="Search destinations..."
+            value="<%= typeof search !== 'undefined' ? search : '' %>"
+          >
+          <button class="btn btn-danger search-btn" type="submit">Search</button>
+        </form>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Host Your Place</a>
+
+        <!-- SAFE CHECK FOR LOGIN -->
+        <% if (typeof currUser === "undefined" || !currUser) { %>
+          <a class="nav-link" href="/login"><b>Login</b></a>
+          <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+        <% } else { %>
+          
+          <% if (currUser.role === "admin") { %>
+            <a class="nav-link" href="/admin/dashboard"><b>Admin Panel</b></a>
+          <% } %>
+
+          <a class="nav-link" href="/logout"><b>Logout</b></a>
+        <% } %>
+
+        <% if(currUser) { %>
+            <a class="nav-link" href="/wishlist"><i class="fa-solid fa-heart"></i> Wishlist</a>
+        <% } %>
+
+
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+<style>
+
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 45%;
+  min-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-input {
+  border-radius: 30px;
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  margin-left: 25px;
+}
+
+.search-btn {
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-weight: 500;
+}
+
+.search-input:hover {
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  transition: 0.2s ease-in-out;
+}
+
+
+</style>

@@ -1,0 +1,71 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-4">
+  <h2 class="fw-bold">Admin Dashboard</h2>
+  <hr>
+
+  <!-- USERS TABLE -->
+  <h4>All Users</h4>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach(user => { %>
+        <tr>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <!-- LISTINGS TABLE -->
+  <h4>All Listings</h4>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% listings.forEach(listing => { %>
+        <tr>
+          <td><%= listing.title %></td>
+          <td>₹<%= listing.price %></td>
+          <td>
+            <% if (listing.owner) { %>
+                <%= listing.owner.username %>
+            <% } else { %>
+                <span class="text-danger">No owner</span>
+            <% } %>
+          </td>
+
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+
+
+<style>
+  table {
+    background: #fff;
+  }
+  h2, h4 {
+    color: #333;
+  }
+  hr {
+    border: 1px solid #ccc;
+  }
+</style>

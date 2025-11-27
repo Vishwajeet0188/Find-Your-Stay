@@ -1,0 +1,237 @@
+<% var fullWidth = true; %>
+<% var pageClass = "full-bg"; %>
+<% layout('layouts/boilerplate') %>
+
+<div class="new-page d-flex justify-content-center align-items-center">
+  <div class="new-card shadow-lg border-0 rounded-4 p-5 animate-card">
+
+    <div class="text-center mb-4">
+      <h3 class="fw-bold text-dark">🌴 Create a New Listing</h3>
+      <p class="text-muted">Share your beautiful stay with the world ✨</p>
+    </div>
+
+    <form method="POST" action="/listings" enctype="multipart/form-data" class="needs-validation">
+
+      <!-- Title -->
+      <div class="mb-4 position-relative">
+        <label class="form-label fw-semibold">Title</label>
+        <input type="text" class="form-control stylish-input" id="title" name="listing[title]" placeholder="Enter Title " required>
+        <i class="bi bi-house-fill input-icon"></i>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-4 position-relative">
+        <label class="form-label fw-semibold">Description</label>
+        <textarea class="form-control stylish-input" id="description" name="listing[description]" placeholder="Write Something About Property"style="height: 100px;" required></textarea>
+        <i class="bi bi-card-text input-icon"></i>
+      </div>
+
+      <!-- Upload Image -->
+      <div class="mb-4 position-relative">
+        <label class="form-label fw-semibold">Upload Listing Image</label>
+
+        <div class="upload-input-container">
+          <input type="file"
+                 class="form-control stylish-input file-input-custom"
+                 id="image"
+                 name="listing[image]"
+                 accept="image/*">
+          <i class="bi bi-cloud-upload-fill input-icon"></i>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="mb-4 position-relative">
+        <label class="form-label fw-semibold">Price (₹)</label>
+        <input type="number" class="form-control stylish-input" id="price" name="listing[price]" placeholder="Enter Price"required>
+        <i class="bi bi-currency-rupee input-icon"></i>
+      </div>
+
+      <!-- Location -->
+      <div class="mb-4 position-relative">
+        <label class="form-label fw-semibold">Location</label>
+        <input type="text" class="form-control stylish-input" id="location" name="listing[location]" placeholder="Enter Location" required>
+        <i class="bi bi-geo-alt-fill input-icon"></i>
+      </div>
+
+      <!-- Country -->
+      <div class="mb-4 position-relative">
+        <label class="form-label fw-semibold">Country</label>
+        <input type="text" class="form-control stylish-input" id="country" name="listing[country]" placeholder="Choose Country" required>
+        <i class="bi bi-globe2 input-icon"></i>
+      </div>
+
+      <!-- CATEGORY FIELD -->
+    <!-- CATEGORY FIELD (Stylish Version) -->
+<div class="mb-4 position-relative">
+  <label class="form-label fw-semibold">Category</label>
+  <div class="input-wrapper">
+    <select class="form-control stylish-input" name="listing[category]" required>
+      <option disabled selected>Select category</option>
+      <option value="trending">Trending</option>
+      <option value="rooms">Rooms</option>
+      <option value="iconic-cities">Iconic Cities</option>
+      <option value="mountains">Mountains</option>
+      <option value="pools">Amazing Pools</option>
+      <option value="castles">Castles</option>
+      <option value="camping">Camping</option>
+      <option value="farms">Farms</option>
+      <option value="snow">Snow Place</option>
+      <option value="historical">Historical Place</option>
+      <option value="beach">Beach</option>
+      <option value="family">Family Trips</option>
+      <option value="adventure">Adventure Trips</option>
+      <option value="environmental">Eco Stays</option>
+      <option value="island">Island Stays</option>
+      <option value="desert">Desert Stay</option>
+      <option value="jungle/safari">Jungle / Safari</option>
+      <option value="treehouse">Treehouse Stay</option>
+    </select>
+    <i class="bi bi-tags-fill input-icon"></i> <!-- Category Icon -->
+  </div>
+</div>
+
+
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-gradient w-100 py-2 fw-semibold rounded-3 shadow-sm">
+        <i class="bi bi-plus-circle me-2"></i> Add Listing
+      </button>
+
+    </form>
+  </div>
+</div>
+
+<style>
+/* 🌈 Full background gradient */
+.new-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fce7f3, #fef9c3, #dbeafe);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 10px;
+}
+
+/* 🌤️ Card styling */
+.new-card {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  max-width: 650px;
+  width: 100%;
+  border-radius: 15px;
+  transition: 0.4s;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.animate-card {
+  animation: floatUp 0.6s ease;
+}
+
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   ✨ INPUT FIELD & ICON ALIGNMENT FIX ✨
+   ========================================= */
+
+/* 1. The Container */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* 2. The Input Box */
+.stylish-input {
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #f9fafb;
+  padding-left: 15px;
+  padding-right: 45px !important;
+  height: 50px;
+  width: 100%;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.stylish-input:focus {
+  border-color: #2563eb;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  outline: none;
+}
+
+/* 3. The Icon: ADJUSTED CENTER 🎯 */
+.input-icon {
+  position: absolute;
+  right: 15px;
+  
+  /* 👇 CHANGED THIS: 50% was too high, 53% is visually perfect */
+  top: 65%;       
+  
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #9ca3af;
+  pointer-events: none;
+  z-index: 10;
+  transition: color 0.3s;
+}
+
+.stylish-input:focus + .input-icon {
+  color: #2563eb;
+}
+
+/* =========================================
+   📝 TEXTAREA SPECIFIC STYLES
+   ========================================= */
+
+textarea.stylish-input {
+  height: 120px !important;
+  padding-top: 12px;
+  resize: none;
+}
+
+/* Keep textarea icon near the top, not centered */
+.input-wrapper textarea + .input-icon {
+  top: 22px;      /* Adjusted slightly to align with first line of text */
+  transform: none; 
+}
+
+/* =========================================
+   📂 FILE UPLOAD STYLES
+   ========================================= */
+
+.file-input-custom {
+  padding-top: 12px !important; /* Nudge text down slightly */
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+/* =========================================
+   🔘 BUTTON STYLES
+   ========================================= */
+
+.btn-gradient {
+  background: linear-gradient(90deg, #f59e0b, #f97316);
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(90deg, #f97316, #f59e0b);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(249,115,22,0.4);
+}
+
+@media (max-width: 768px) {
+  .new-card {
+    padding: 1.5rem !important;
+  }
+}
+
+
+</style>

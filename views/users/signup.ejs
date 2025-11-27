@@ -1,0 +1,132 @@
+<% var fullWidth = true; %>
+<% var pageClass = "full-bg"; %>
+<% layout('layouts/boilerplate') %>
+
+<div class="d-flex justify-content-center align-items-center min-vh-100 bg-gradient">
+  <div class="card shadow-lg border-0 rounded-4 p-4" style="max-width: 420px; width: 100%;">
+    
+    <!-- Header -->
+    <div class="text-center mb-4">
+      <h3 class="fw-bold text-dark">Create Your Account ✨</h3>
+      <p class="text-muted small">Join us and explore amazing stays!</p>
+    </div>
+
+    <!-- Error Message -->
+    <% if (error && error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } %>
+
+    <!-- FORM START -->
+    <form action="/signup" method="POST" class="needs-validation" novalidate>
+
+      <!-- Username -->
+      <div class="form-floating mb-4 position-relative input-container">
+        <input type="text" id="username" name="username" class="form-control stylish-input" placeholder="Enter your username" required />
+        <label for="username">Username</label>
+        <div class="input-icon"><i class="bi bi-person-fill"></i></div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-floating mb-4 position-relative input-container">
+        <input type="email" id="email" name="email" class="form-control stylish-input" placeholder="Enter your email" required />
+        <label for="email">Email</label>
+        <div class="input-icon"><i class="bi bi-envelope-fill"></i></div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-floating mb-4 position-relative input-container">
+        <input type="password" id="password" name="password" class="form-control stylish-input" placeholder="Enter your password" required />
+        <label for="password">Password</label>
+        <div class="input-icon"><i class="bi bi-lock-fill"></i></div>
+      </div>
+
+      <!-- ADMIN CODE (OPTIONAL) -->
+      <div class="form-floating mb-4 position-relative input-container">
+        <input 
+          type="password"
+          id="adminCode"
+          name="adminCode"
+          class="form-control stylish-input"
+          placeholder="Enter Admin Code (optional)"
+        />
+        <label for="adminCode">Enter Admin Code (optional)</label>
+        <div class="input-icon"><i class="fa-solid fa-key"></i></div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-dark w-100 py-2 fw-semibold rounded-3 shadow-sm signup-btn">
+        <i class="bi bi-person-plus-fill me-2"></i> Sign Up
+      </button>
+
+      <!-- Login Link -->
+      <div class="text-center mt-4 small text-muted">
+        Already have an account?
+        <a href="/login" class="text-decoration-none fw-semibold text-primary">Login</a>
+      </div>
+    
+    </form>
+  </div>
+</div>
+
+<style>
+  /* Background gradient */
+  .bg-gradient {
+    background: linear-gradient(135deg, #f8f9fa 0%, #dfe9f3 100%);
+  }
+
+  /* Card hover effect */
+  .card { background: #fff; transition: 0.4s ease; }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
+
+  /* Input container */
+  .input-container { position: relative; }
+
+  /* Input styles */
+  .stylish-input {
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+  }
+  .stylish-input:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 8px rgba(13, 110, 253, 0.4);
+    background-color: #fff;
+  }
+
+  /* Floating label animation */
+  .form-floating label { color: #6c757d; transition: all 0.3s ease; }
+  .stylish-input:focus ~ label,
+  .stylish-input:not(:placeholder-shown) ~ label {
+    color: #0d6efd;
+    transform: translateY(-1.2rem);
+    font-size: 0.85rem;
+  }
+
+  /* ICONS inside input */
+  .input-icon {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    color: #adb5bd;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+  .stylish-input:focus + .input-icon i { color: #0d6efd; }
+
+  /* Signup button */
+  .signup-btn {
+    background: linear-gradient(90deg, #000000, #343a40);
+    transition: all 0.3s ease-in-out;
+  }
+  .signup-btn:hover {
+    background: linear-gradient(90deg, #343a40, #000000);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+</style>

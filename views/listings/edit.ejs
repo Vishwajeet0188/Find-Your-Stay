@@ -1,0 +1,233 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="edit-page d-flex justify-content-center align-items-center">
+  <div class="edit-card shadow-lg border-0 rounded-4 p-5 mx-auto animate-card">
+    <div class="text-center mb-4">
+      <h3 class="fw-bold text-dark">
+        ✏️ Edit Listing
+      </h3>
+      <p class="text-muted">Update your stay details and keep them fresh 🌿</p>
+    </div>
+
+    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" enctype="multipart/form-data" novalidate class="needs-validation">
+
+      <!-- Title -->
+      <div class="mb-3 position-relative">
+        <label for="title" class="form-label fw-semibold">
+          <i class="bi bi-house-fill text-primary me-2"></i> Title
+        </label>
+        <input 
+          type="text"
+          class="form-control stylish-input"
+          id="title"
+          name="listing[title]"
+          value="<%= listing.title %>"
+          required
+        >
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3 position-relative">
+        <label for="description" class="form-label fw-semibold">
+          <i class="bi bi-card-text text-primary me-2"></i> Description
+        </label>
+        <textarea
+          class="form-control stylish-input"
+          id="description"
+          name="listing[description]"
+          rows="4"
+          required
+        ><%= listing.description %></textarea>
+      </div>
+
+      <!-- Upload New Image -->
+      <div class="mb-4">
+        <label for="image" class="form-label fw-semibold">
+          <i class="bi bi-cloud-upload-fill text-primary me-2"></i> Upload New Listing Image
+        </label>
+
+        <div class="upload-input-container">
+            <input
+              type="file"
+              class="form-control stylish-input file-input-custom"
+              id="image"
+              name="listing[image]"
+              accept="image/*"
+            >
+            <i class="bi bi-cloud-upload-fill upload-icon"></i>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="mb-3 position-relative">
+        <label for="price" class="form-label fw-semibold">
+          <i class="bi bi-currency-rupee text-primary me-2"></i> Price (₹)
+        </label>
+        <input 
+          type="number"
+          class="form-control stylish-input"
+          id="price"
+          name="listing[price]"
+          value="<%= listing.price %>"
+          required
+        >
+      </div>
+
+      <!-- Location -->
+      <div class="mb-3 position-relative">
+        <label for="location" class="form-label fw-semibold">
+          <i class="bi bi-geo-alt text-primary me-2"></i> Location
+        </label>
+        <input 
+          type="text"
+          class="form-control stylish-input"
+          id="location"
+          name="listing[location]"
+          value="<%= listing.location %>"
+          required
+        >
+      </div>
+
+      <!-- Country -->
+      <div class="mb-4 position-relative">
+        <label for="country" class="form-label fw-semibold">
+          <i class="bi bi-globe-central-south-asia text-primary me-2"></i> Country
+        </label>
+        <input
+          type="text"
+          class="form-control stylish-input"
+          id="country"
+          name="listing[country]"
+          value="<%= listing.country %>"
+          required
+        >
+      </div>
+
+      <!-- CATEGORY FIELD (Stylish + Preselected) -->
+    <div class="mb-4 position-relative">
+      <label class="form-label fw-semibold">Category</label>
+      <div class="input-wrapper">
+        <select class="form-control stylish-input" name="listing[category]" required>
+          <option disabled>Select category</option>
+          <option value="trending" <%= listing.category === 'trending' ? 'selected' : '' %>>Trending</option>
+          <option value="rooms" <%= listing.category === 'rooms' ? 'selected' : '' %>>Rooms</option>
+          <option value="iconic-cities" <%= listing.category === 'iconic-cities' ? 'selected' : '' %>>Iconic Cities</option>
+          <option value="mountains" <%= listing.category === 'mountains' ? 'selected' : '' %>>Mountains</option>
+          <option value="pools" <%= listing.category === 'pools' ? 'selected' : '' %>>Amazing Pools</option>
+          <option value="castles" <%= listing.category === 'castles' ? 'selected' : '' %>>Castles</option>
+          <option value="camping" <%= listing.category === 'camping' ? 'selected' : '' %>>Camping</option>
+          <option value="farms" <%= listing.category === 'farms' ? 'selected' : '' %>>Farms</option>
+          <option value="snow" <%= listing.category === 'snow' ? 'selected' : '' %>>Snow Place</option>
+          <option value="historical" <%= listing.category === 'historical' ? 'selected' : '' %>>Historical Place</option>
+          <option value="beach" <%= listing.category === 'beach' ? 'selected' : '' %>>Beach</option>
+          <option value="family" <%= listing.category === 'family' ? 'selected' : '' %>>Family Trips</option>
+          <option value="adventure" <%= listing.category === 'adventure' ? 'selected' : '' %>>Adventure Trips</option>
+          <option value="environmental" <%= listing.category === 'environmental' ? 'selected' : '' %>>Eco Stays</option>
+          <option value="island" <%= listing.category === 'island' ? 'selected' : '' %>>Island Stays</option>
+          <option value="desert" <%= listing.category === 'desert' ? 'selected' : '' %>>Desert Stay</option>
+          <option value="jungle/safari" <%= listing.category === 'jungle/safari' ? 'selected' : '' %>>Jungle / Safari</option>
+          <option value="treehouse" <%= listing.category === 'treehouse' ? 'selected' : '' %>>Treehouse Stay</option>
+        </select>
+        <i class="bi bi-tags-fill input-icon"></i>
+      </div>
+    </div>
+
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-gradient w-100 py-2 fw-semibold rounded-3 shadow-sm">
+        <i class="bi bi-arrow-repeat me-2"></i> Update Listing
+      </button>
+
+    </form>
+  </div>
+</div>
+
+<style>
+  .edit-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #dbeafe, #ede9fe, #fef9c3);
+    background-attachment: fixed;
+    padding: 40px 10px;
+  }
+
+  .edit-card {
+    width: 100%;
+    max-width: 650px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .edit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  /* INPUT STYLING */
+  .stylish-input {
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    background-color: #f9fafb;
+    height: 48px;
+    padding-right: 3rem;
+    transition: all 0.3s ease;
+  }
+
+  textarea.stylish-input {
+    height: auto;
+    min-height: 100px;
+    resize: none;
+  }
+
+  .stylish-input:focus {
+    border: 2px solid #2563eb;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(37,99,235,0.3);
+  }
+
+  /* FILE UPLOAD WRAPPER */
+  .upload-input-container {
+    position: relative;
+    height: 48px;
+  }
+
+  .file-input-custom {
+    height: 48px;
+    padding-right: 3rem !important;
+    cursor: pointer;
+  }
+
+  /* Upload Icon */
+  .upload-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    color: #9ca3af;
+    pointer-events: none;
+  }
+
+  /* Buttons */
+  .btn-gradient {
+    background: linear-gradient(90deg, #2563eb, #4f46e5);
+    color: white;
+    border: none;
+  }
+
+  .btn-gradient:hover {
+    background: linear-gradient(90deg, #4f46e5, #2563eb);
+    box-shadow: 0 6px 18px rgba(37,99,235,0.3);
+    transform: translateY(-2px);
+  }
+
+  .animate-card {
+    animation: fadeUp 0.5s ease;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

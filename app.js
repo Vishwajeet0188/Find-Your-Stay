@@ -81,6 +81,12 @@ app.use((req, res, next) => {
   next();
 });
 
+/* ---- HOME ROUTE ---- */
+app.get("/", (req, res) => {
+  res.redirect("/listings");   // best and easy fix
+});
+
+
 /* ---- ROUTES ---- */
 const listingRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
